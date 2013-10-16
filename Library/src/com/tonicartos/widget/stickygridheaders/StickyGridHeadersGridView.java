@@ -35,6 +35,7 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.View.MeasureSpec;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -49,7 +50,7 @@ import android.widget.ListAdapter;
  * GridView that displays items in sections with headers that stick to the top
  * of the view.
  * 
- * @author Tonic Artos, Emil Sjölander
+ * @author Tonic Artos, Emil Sjlander
  */
 public class StickyGridHeadersGridView extends GridView implements OnScrollListener,
         OnItemClickListener, OnItemSelectedListener, OnItemLongClickListener {
@@ -907,7 +908,10 @@ public class StickyGridHeadersGridView extends GridView implements OnScrollListe
 
         measureHeader();
 
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+		super.onMeasure(widthMeasureSpec, expandSpec);
+		ViewGroup.LayoutParams params = getLayoutParams();
+		params.height = getMeasuredHeight() * 10;
     }
 
     public interface OnHeaderClickListener {

@@ -437,7 +437,7 @@ public class StickyGridHeadersBaseAdapterWrapper extends BaseAdapter {
 
         @Override
         protected LayoutParams generateDefaultLayoutParams() {
-            return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         }
     }
 
